@@ -14,6 +14,7 @@ public class Main {
      */
     public static void main(String[] args) {
         List<String> items = new ArrayList<>();
+        String score = "";
 
         String w = createWinningNums();
         System.out.println("The number combination you need to win: " + w);
@@ -34,7 +35,9 @@ public class Main {
             System.out.println("You did not win, Try again?");
         }
         else {
+             score += compare(items, w).toString();
              System.out.println("You win");
+             System.out.println("score: " + score);
         }
 
         //System.out.println(items.get(0));
@@ -75,12 +78,12 @@ public class Main {
 
     public static Collection compare(List list, String winning) {
         Map<String, Integer> hmap = new HashMap<>();
-        int count = 1;
+        int score = 1;
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).equals(winning) && hmap.containsKey(winning)) {
-                hmap.put(winning, count = count + 1);
+                hmap.put(winning, score = score + 1);
             } else if (list.get(i).equals(winning) && hmap.containsKey(winning) == false) {
-                hmap.put(winning, count);
+                hmap.put(winning, score);
             }
         }
 

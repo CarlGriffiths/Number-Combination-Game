@@ -14,30 +14,40 @@ public class Main {
      */
     public static void main(String[] args) {
         List<String> items = new ArrayList<>();
+        Scanner in = new Scanner(System.in);
         String score = "";
-
         String w = createWinningNums();
-        System.out.println("The number combination you need to win: " + w);
+
         System.out.println("Press 1 to play, you will be given 5 number combinations");
 
-        for (String i : create()) {
-            items.add(i);
-        }
-        System.out.println("Your combinations = " + items);
-        /*if (compare(items, w) >= 0) {
-         System.out.println("You win");
-         System.out.println(compare(items, w));
-         } else {
-         System.out.println("You did not win, Try again?");
-         }*/
+        int choice = in.nextInt();
+        while(choice ==1){
+        switch (choice) {
+            case 1:
+                items.clear();
+                w = createWinningNums();
+                System.out.println("The number combination you needed to win: " + w);
+                for (String i : create()) {
+                    items.add(i);
+                }
+                
+                if (compare(items, w).isEmpty()) {
+                    System.out.println("You did not win, Try again?");
+                    System.out.println("Your combinations = " + items);
+                    choice = in.nextInt();
+                } else {
 
-        if (compare(items, w).isEmpty()) {
-            System.out.println("You did not win, Try again?");
+                    System.out.println("Your combinations = " + items);
+                    score += compare(items, w).toString();
+                    System.out.println("You win");
+                    System.out.println("score: " + score);
+                    System.out.println("Press 1 to play again");
+                    choice = in.nextInt();
+                }
+            case 2:
+                break;
+
         }
-        else {
-             score += compare(items, w).toString();
-             System.out.println("You win");
-             System.out.println("score: " + score);
         }
 
         //System.out.println(items.get(0));

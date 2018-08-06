@@ -34,15 +34,16 @@ public class Main {
 
                     if (compare(items, w) == false) {
                         
-                        System.out.println("You did not win, Try again?");
                         System.out.println("Your combinations = " + items);
+                        System.out.println("You did not win, Try again?");
+                        System.out.println("current score: " + getScore());
                         System.out.println("Press 1 to play again");
                         choice = in.nextInt();
                     } else {
                         
                         System.out.println("Your combinations = " + items);
 
-                        System.out.println("You win");
+                        System.out.println("YOU WIN");
                         System.out.println("current score: " + getScore());
                         System.out.println("Press 1 to play again");
                         choice = in.nextInt();
@@ -95,6 +96,7 @@ public class Main {
                 return true;
             }
         }
+        score--;
         return false;
 
     }

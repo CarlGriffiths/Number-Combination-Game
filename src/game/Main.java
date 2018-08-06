@@ -18,12 +18,12 @@ public class Main {
 
         String w = createWinningNums();
         System.out.println("The number combination you need to win: " + w);
-        System.out.println("Press 1 to play");
+        System.out.println("Press 1 to play, you will be given 5 number combinations");
         
         for(String i: create()){
             items.add(i);
         }
-        System.out.println(items);
+        System.out.println("Your combinations = " + items);
         if (compare(items, w) >=0) {
             System.out.println("You win");
             System.out.println(compare(items, w));
@@ -40,11 +40,14 @@ public class Main {
     }
 
     public static List<String> create() {
+        
+        int numberOfTries = 5;
+        int combinationLength = 3;
 
         List<String> items = new ArrayList<>();
-        for (int j = 0; j < 10; j++) {
+        for (int j = 0; j < numberOfTries; j++) {
             String numfin = "";
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < combinationLength; i++) {
                 int num = ThreadLocalRandom.current().nextInt(1, 4 + 1);
                 numfin += num;
             }
@@ -57,8 +60,9 @@ public class Main {
 
     public static String createWinningNums() {
         String numfin = "";
+        int combinationLength = 3;
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < combinationLength; i++) {
             int num = ThreadLocalRandom.current().nextInt(1, 4 + 1);
             numfin += num;
         }

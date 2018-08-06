@@ -26,21 +26,24 @@ public class Main {
                 case 1:
                     items.clear();
                     w = createWinningNums();
+                    System.out.println("------------------------------");
                     System.out.println("The number combination you needed to win: " + w);
                     for (String i : create()) {
                         items.add(i);
                     }
 
                     if (compare(items, w) == false) {
+                        
                         System.out.println("You did not win, Try again?");
                         System.out.println("Your combinations = " + items);
+                        System.out.println("Press 1 to play again");
                         choice = in.nextInt();
                     } else {
-
+                        
                         System.out.println("Your combinations = " + items);
 
                         System.out.println("You win");
-                        System.out.println("score: " + getScore());
+                        System.out.println("current score: " + getScore());
                         System.out.println("Press 1 to play again");
                         choice = in.nextInt();
                     }
@@ -95,8 +98,8 @@ public class Main {
         return false;
 
     }
-    
-    public static int getScore(){
+
+    public static int getScore() {
         return score;
     }
 

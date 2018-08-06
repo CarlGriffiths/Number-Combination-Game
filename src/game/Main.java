@@ -15,45 +15,43 @@ public class Main {
     public static void main(String[] args) {
         List<String> items = new ArrayList<>();
         Scanner in = new Scanner(System.in);
-        String score = "";
+        int score = 0;
         String w = createWinningNums();
 
         System.out.println("Press 1 to play, you will be given 5 number combinations");
 
         int choice = in.nextInt();
-        while(choice ==1){
-        switch (choice) {
-            case 1:
-                items.clear();
-                w = createWinningNums();
-                System.out.println("The number combination you needed to win: " + w);
-                for (String i : create()) {
-                    items.add(i);
-                }
-                
-                if (compare(items, w).isEmpty()) {
-                    System.out.println("You did not win, Try again?");
-                    System.out.println("Your combinations = " + items);
-                    choice = in.nextInt();
-                } else {
+        while (choice == 1) {
+            switch (choice) {
+                case 1:
+                    items.clear();
+                    w = createWinningNums();
+                    System.out.println("The number combination you needed to win: " + w);
+                    for (String i : create()) {
+                        items.add(i);
+                    }
 
-                    System.out.println("Your combinations = " + items);
-                    score += compare(items, w).toString();
-                    System.out.println("You win");
-                    System.out.println("score: " + score);
-                    System.out.println("Press 1 to play again");
-                    choice = in.nextInt();
-                }
-            case 2:
-                break;
+                    if (compare(items, w) == false) {
+                        System.out.println("You did not win, Try again?");
+                        System.out.println("Your combinations = " + items);
+                        choice = in.nextInt();
+                    } else {
 
+                        System.out.println("Your combinations = " + items);
+
+                        System.out.println("You win");
+                        System.out.println("score: " + getScore());
+                        System.out.println("Press 1 to play again");
+                        choice = in.nextInt();
+                    }
+                case 2:
+                    break;
+
+            }
         }
-        }
 
-        //System.out.println(items.get(0));
-        //System.out.println(compare(items, w));
-        //System.out.println(create());
     }
+    static int score = 0;
 
     public static List<String> create() {
 
@@ -86,17 +84,20 @@ public class Main {
 
     }
 
-    public static Collection compare(List list, String winning) {
-        Map<String, Integer> hmap = new HashMap<>();
-        int score = 1;
+    public static Boolean compare(List list, String winning) {
+
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).equals(winning) && hmap.containsKey(winning)) {
-                hmap.put(winning, score = score + 1);
-            } else if (list.get(i).equals(winning) && hmap.containsKey(winning) == false) {
-                hmap.put(winning, score);
+            if (list.get(i).equals(winning)) {
+                score++;
+                return true;
             }
         }
+        return false;
 
-        return hmap.values();
     }
+    
+    public static int getScore(){
+        return score;
+    }
+
 }
